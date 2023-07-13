@@ -17,7 +17,7 @@ SELECTION-SCREEN BEGIN OF BLOCK b2 WITH FRAME TITLE TEXT-002.
               p_disply RADIOBUTTON GROUP g1.
 SELECTION-SCREEN END OF BLOCK b2.
 
-DATA lt_tweet TYPE TABLE OF zot_05_t_p_tweet.
+DATA lt_tweet TYPE TABLE OF zot_05_t_tweet.
 
 
 START-OF-SELECTION.
@@ -27,22 +27,26 @@ START-OF-SELECTION.
   ELSE.
     CASE 'X'.
       WHEN p_send.
-        APPEND VALUE #( tweetid = p_twid
-                        tweet = p_tweet
-                            ) TO lt_tweet.
-        MODIFY zot_05_t_p_tweet FROM TABLE lt_tweet.
+        TRY.
+            APPEND VALUE #( tweetid = p_twid
+                            tweet = p_tweet
+                                ) TO lt_tweet.
+            INSERT zot_05_t_tweet  FROM TABLE lt_tweet.
+          CATCH cx_sy_open_sql_db.
+            cl_demo_output=>display( 'Aynı Tweet ID numarası ile Tweet vardır. Lütfen yeni bir Tweet ID si kullanınız.' ).
+        ENDTRY.
         COMMIT WORK AND WAIT.
       WHEN p_update.
-        UPDATE zot_05_t_p_tweet SET tweet = p_tweet
+        UPDATE zot_05_t_tweet SET tweet = p_tweet
    WHERE tweetid = p_twid.
         COMMIT WORK AND WAIT.
       WHEN p_delete.
-        DELETE FROM zot_05_t_p_tweet WHERE tweetid = p_twid.
+        DELETE FROM zot_05_t_tweet WHERE tweetid = p_twid.
         COMMIT WORK AND WAIT.
       WHEN p_disply.
         SELECT tweetid,
                tweet
-        FROM zot_05_t_p_tweet
+        FROM zot_05_t_tweet
         INTO TABLE @DATA(abapitter).
         cl_demo_output=>display( abapitter ).
     ENDCASE.
