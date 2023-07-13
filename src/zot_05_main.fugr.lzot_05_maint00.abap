@@ -49,6 +49,12 @@ DATA:  BEGIN OF STATUS_ZOT_05_T_P_MAST               .   "state vector
 DATA:  END OF STATUS_ZOT_05_T_P_MAST               .
 CONTROLS: TCTRL_ZOT_05_T_P_MAST
             TYPE TABLEVIEW USING SCREEN '0002'.
+*...processing: ZOT_05_T_P_TWEET................................*
+DATA:  BEGIN OF STATUS_ZOT_05_T_P_TWEET              .   "state vector
+         INCLUDE STRUCTURE VIMSTATUS.
+DATA:  END OF STATUS_ZOT_05_T_P_TWEET              .
+CONTROLS: TCTRL_ZOT_05_T_P_TWEET
+            TYPE TABLEVIEW USING SCREEN '0009'.
 *.........table declarations:.................................*
 TABLES: *ZOT_05_T_PERS                 .
 TABLES: *ZOT_05_T_P_AILE               .
@@ -58,6 +64,7 @@ TABLES: *ZOT_05_T_P_ETUR               .
 TABLES: *ZOT_05_T_P_ILTSM              .
 TABLES: *ZOT_05_T_P_ITUR               .
 TABLES: *ZOT_05_T_P_MAST               .
+TABLES: *ZOT_05_T_P_TWEET              .
 TABLES: ZOT_05_T_PERS                  .
 TABLES: ZOT_05_T_P_AILE                .
 TABLES: ZOT_05_T_P_ATUR                .
@@ -66,6 +73,7 @@ TABLES: ZOT_05_T_P_ETUR                .
 TABLES: ZOT_05_T_P_ILTSM               .
 TABLES: ZOT_05_T_P_ITUR                .
 TABLES: ZOT_05_T_P_MAST                .
+TABLES: ZOT_05_T_P_TWEET               .
 
 * general table data declarations..............
   INCLUDE LSVIMTDT                                .
