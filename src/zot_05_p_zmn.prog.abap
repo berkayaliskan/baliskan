@@ -9,9 +9,7 @@ DATA gs_zmn TYPE zot_05_t_zmn.
 SELECT-OPTIONS : s_index FOR gs_zmn-id.
 
 DATA: lv_datediff TYPE p,
-      lv_timediff TYPE p,
-      lv_earliest TYPE c,
-      lv_saniye   TYPE uzeit.
+      lv_time   TYPE uzeit.
 
 START-OF-SELECTION.
 
@@ -36,11 +34,9 @@ SORT lt_zmn BY id ASCENDING.
         date2    = ls_zmn-bitis_tarihi
         time2    = ls_zmn-bitis_saati
       IMPORTING
-        datediff = lv_datediff
-        timediff = lv_timediff
-        earliest = lv_earliest.
+        datediff = lv_datediff.
 
-    lv_saniye = ls_zmn-bitis_saati - ls_zmn-baslangic_saati.
+    lv_time = ls_zmn-bitis_saati - ls_zmn-baslangic_saati.
 
     DATA(lv_gun_diff) = ls_zmn-bitis_tarihi - ls_zmn-baslangic_tarihi.
 
@@ -61,14 +57,14 @@ SORT lt_zmn BY id ASCENDING.
     IF lv_gun NE 0.
       WRITE: |{ lv_gun } GÜN|.
     ENDIF.
-    IF lv_saniye NE 0.
-      WRITE: |{ lv_saniye+0(2) } SAAT|.
+    IF lv_time NE 0.
+      WRITE: |{ lv_time+0(2) } SAAT|.
     ENDIF.
-    IF lv_saniye NE 0.
-      WRITE: |{ lv_saniye+2(2) } DAKİKA|.
+    IF lv_time NE 0.
+      WRITE: |{ lv_time+2(2) } DAKİKA|.
     ENDIF.
-    IF lv_saniye NE 0.
-      WRITE: |{ lv_saniye+4(2) } SANİYE|.
+    IF lv_time NE 0.
+      WRITE: |{ lv_time+4(2) } SANİYE|.
     ENDIF.
 
     NEW-LINE.
