@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <AREAT>Function Group for Function Modules</AREAT>
+   <INCLUDES>
+    <SOBJ_NAME>LZOT_05_FUNCTIONSTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZOT_05_FUNCTIONS</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>ZOT_05_DO_MATH_OPERA</FUNCNAME>
+     <SHORT_TEXT>Math. Operations</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_NUMBER1</PARAMETER>
+       <TYP>I</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_NUMBER2</PARAMETER>
+       <TYP>I</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_OPERATION</PARAMETER>
+       <TYP>C</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>EV_RESULT</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>I</TYP>
+      </RSEXP>
+     </EXPORT>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>CX_SY_ZERODIVIDE</EXCEPTION>
+      </RSEXC>
+      <RSEXC>
+       <EXCEPTION>CX_SY_ASSIGN_CAST_ERROR</EXCEPTION>
+       <IS_RESUMABLE>X</IS_RESUMABLE>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_NUMBER1</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_NUMBER2</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_OPERATION</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_RESULT</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>CX_SY_ZERODIVIDE</PARAMETER>
+       <KIND>X</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>CX_SY_ASSIGN_CAST_ERROR</PARAMETER>
+       <KIND>X</KIND>
+      </RSFDO>
+     </DOCUMENTATION>
+     <EXCEPTION_CLASSES>X</EXCEPTION_CLASSES>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

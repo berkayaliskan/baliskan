@@ -12,9 +12,69 @@
    </PROGDIR>
    <TPOOL>
     <item>
+     <ID>I</ID>
+     <KEY>001</KEY>
+     <ENTRY>Hasta Bilgileri</ENTRY>
+     <LENGTH>30</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>002</KEY>
+     <ENTRY>Randevu</ENTRY>
+     <LENGTH>30</LENGTH>
+    </item>
+    <item>
      <ID>R</ID>
      <ENTRY>Exercise</ENTRY>
      <LENGTH>8</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_AD</KEY>
+     <ENTRY> Ad</ENTRY>
+     <LENGTH>11</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_COCUK</KEY>
+     <ENTRY> Çocuk Polikliniği</ENTRY>
+     <LENGTH>26</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_DAHIL</KEY>
+     <ENTRY> Dahiliye Polikliniği</ENTRY>
+     <LENGTH>29</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_DERI</KEY>
+     <ENTRY> Dermotoloji Polikliniği</ENTRY>
+     <LENGTH>32</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_ORTAP</KEY>
+     <ENTRY> Ortapedi Polikliniği</ENTRY>
+     <LENGTH>29</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_SAAT</KEY>
+     <ENTRY> Randevu Saati</ENTRY>
+     <LENGTH>22</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_SOYAD</KEY>
+     <ENTRY> Soyad</ENTRY>
+     <LENGTH>14</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_TC</KEY>
+     <ENTRY> TC</ENTRY>
+     <LENGTH>11</LENGTH>
     </item>
    </TPOOL>
   </asx:values>
