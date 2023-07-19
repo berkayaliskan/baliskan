@@ -63,27 +63,34 @@ CLASS lcl_main_controller IMPLEMENTATION.
 *    CONCATENATE '@DI@' TEXT-004 INTO maint  SEPARATED BY space.
 *    CONCATENATE '@QH@' TEXT-005 INTO report  SEPARATED BY space.
 
-LOOP AT SCREEN .
-*    CASE 'X'.
-*      WHEN p_sat.
-*        IF screen-group1 = 'M1'.
-*          screen-input     =  1.
-*          screen-invisible =  0.
-*        ELSEIF screen-group1 = 'M2'.
-*          screen-input     =  0.
-*          screen-invisible =  1.
-*        ENDIF..
-*      WHEN p_sas.
-*        IF screen-group1 = 'M2'.
-*          screen-input     =  1.
-*          screen-invisible =  0.
-*        ELSEIF screen-group1 = 'M1'.
-*          screen-input     =  0.
-*          screen-invisible =  1.
-*        ENDIF.
-*    ENDCASE.
-*    MODIFY SCREEN.
-  ENDLOOP.
+  LOOP AT SCREEN.
+
+      screen-active = COND #( WHEN p_sat EQ abap_true THEN SWITCH #( screen-group1 WHEN 'M2' THEN 0 )
+                              WHEN p_sas EQ abap_true THEN SWITCH #( screen-group1 WHEN 'M1' THEN 0 ) ).
+      MODIFY SCREEN.
+    ENDLOOP.
+
+*LOOP AT SCREEN .
+**    CASE 'X'.
+**      WHEN p_sat.
+**        IF screen-group1 = 'M1'.
+**          screen-input     =  1.
+**          screen-invisible =  0.
+**        ELSEIF screen-group1 = 'M2'.
+**          screen-input     =  0.
+**          screen-invisible =  1.
+**        ENDIF..
+**      WHEN p_sas.
+**        IF screen-group1 = 'M2'.
+**          screen-input     =  1.
+**          screen-invisible =  0.
+**        ELSEIF screen-group1 = 'M1'.
+**          screen-input     =  0.
+**          screen-invisible =  1.
+**        ENDIF.
+**    ENDCASE.
+**    MODIFY SCREEN.
+*  ENDLOOP.
   ENDMETHOD.
 
   METHOD selscr_input.
@@ -110,8 +117,8 @@ LOOP AT SCREEN .
            eb~menge,
            eb~meins
     FROM eban AS eb
-*    INNER JOIN ekpo AS ek ON eb~banfn EQ ek~banfn
-*                                          AND eb~bnfpo EQ ek~bnfpo
+    INNER JOIN ekpo AS ek ON eb~banfn EQ ek~banfn
+                                          AND eb~bnfpo EQ ek~bnfpo
     INTO CORRESPONDING FIELDS OF TABLE @me->mt_alv_list
     WHERE eb~banfn IN @s_banfn AND eb~bsart IN @s_bsart.
 
@@ -133,8 +140,8 @@ LOOP AT SCREEN .
            ek~menge,
            ek~meins
     FROM ekpo AS ek
-*    INNER JOIN ekpo AS ek ON eb~banfn EQ ek~banfn
-*                                          AND eb~bnfpo EQ ek~bnfpo
+    INNER JOIN eban AS eb ON eb~banfn EQ ek~banfn
+                                          AND eb~bnfpo EQ ek~bnfpo
     INTO CORRESPONDING FIELDS OF TABLE @me->mt_alv_list_sas
     WHERE ek~ebeln IN @s_ebeln AND ek~matkl IN @s_matkl.
 
@@ -303,21 +310,22 @@ LOOP AT SCREEN .
                  WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
     ENDIF.
 
-*    LOOP AT rt_fcat ASSIGNING FIELD-SYMBOL(<ls_fcat>).
-*      CASE <ls_fcat>-fieldname.
-*        WHEN 'COLOR'.
+    LOOP AT rt_fcat ASSIGNING FIELD-SYMBOL(<ls_fcat>).
+      CASE <ls_fcat>-fieldname.
+        WHEN 'COLOR'.
+          <ls_fcat>-no_out = abap_true.
 *          <ls_fcat>-hotspot = abap_true.
-**        WHEN 'MATKL'.
-**          <ls_fcat>-edit = abap_true.
-**        WHEN 'MATNR'.
-**          <ls_fcat>-scrtext_l =
-**          <ls_fcat>-scrtext_M =
-**          <ls_fcat>-scrtext_S =
-**          <ls_fcat>-reptext = 'DENEMEEE'.
-**
-**          <ls_fcat>-hotspot = abap_true.
-*      ENDCASE.
-*    ENDLOOP.
+*        WHEN 'MATKL'.
+*          <ls_fcat>-edit = abap_true.
+*        WHEN 'MATNR'.
+*          <ls_fcat>-scrtext_l =
+*          <ls_fcat>-scrtext_M =
+*          <ls_fcat>-scrtext_S =
+*          <ls_fcat>-reptext = 'DENEMEEE'.
+*
+*          <ls_fcat>-hotspot = abap_true.
+      ENDCASE.
+    ENDLOOP.
 
   ENDMETHOD.
 
